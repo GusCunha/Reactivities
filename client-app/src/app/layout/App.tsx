@@ -8,11 +8,11 @@ import ActivityDetails from '../../features/activities/details/ActivityDetails';
 import ActivityForm from '../../features/activities/form/ActivityForm';
 import HomePage from '../../features/home/HomePage';
 import NavBar from '../../features/nav/NavBar';
-import LoginForm from '../../features/user/LoginForm';
+import ProfilePage from '../../features/profiles/ProfilePage';
+import ModalContainer from '../common/modals/ModalContainer';
 import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
 import NotFound from './NotFound';
-import ModalContainer from '../common/modals/ModalContainer';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
     const rootStore = useContext(RootStoreContext);
@@ -48,7 +48,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                                     path={['/createActivity', '/manage/:id']}
                                     component={ActivityForm}
                                 />
-                                <Route path='/login' component={LoginForm} />
+                                <Route path='/profile/:username' component={ProfilePage} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Container>
