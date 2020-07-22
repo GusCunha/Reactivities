@@ -1,5 +1,5 @@
-import { action, observable, reaction } from "mobx";
-import { RootStore } from "./rootStore";
+import { action, observable, reaction } from 'mobx';
+import { RootStore } from './rootStore';
 
 export default class CommonStore {
     rootStore: RootStore;
@@ -12,7 +12,7 @@ export default class CommonStore {
                 if (token) {
                     window.localStorage.setItem('jwt', token);
                 } else {
-                    window.localStorage.removeItem('jwt');
+                    window.localStorage.removeItem('jwt')
                 }
             }
         )

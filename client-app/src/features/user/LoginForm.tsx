@@ -9,18 +9,20 @@ import { IUserFormValues } from '../../app/models/user';
 import { RootStoreContext } from '../../app/stores/rootStore';
 
 const validate = combineValidators({
-    email: isRequired('email'),
-    password: isRequired('password')
-})
+    email: isRequired('Email'),
+    password: isRequired('Password')
+});
 
 const LoginForm = () => {
     const rootStore = useContext(RootStoreContext);
     const { login } = rootStore.userStore;
     return (
         <FinalForm
-            onSubmit={(values: IUserFormValues) => login(values).catch(error => ({
-                [FORM_ERROR]: error
-            }))}
+            onSubmit={(values: IUserFormValues) =>
+                login(values).catch(error => ({
+                    [FORM_ERROR]: error
+                }))
+            }
             validate={validate}
             render={({
                 handleSubmit,
@@ -31,12 +33,13 @@ const LoginForm = () => {
                 dirtySinceLastSubmit
             }) => (
                     <Form onSubmit={handleSubmit} error>
-                        <Header as='h2' content='Login to Reactivities' color='teal' textAlign='center' />
-                        <Field
-                            name='email'
-                            component={TextInput}
-                            placeholder='Email'
+                        <Header
+                            as='h2'
+                            content='Login to Reactivities'
+                            color='teal'
+                            textAlign='center'
                         />
+                        <Field name='email' component={TextInput} placeholder='Email' />
                         <Field
                             name='password'
                             component={TextInput}
@@ -56,10 +59,10 @@ const LoginForm = () => {
                             content='Login'
                             fluid
                         />
-                    </Form >
+                    </Form>
                 )}
         />
     );
-}
+};
 
 export default LoginForm;

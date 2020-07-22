@@ -1,7 +1,7 @@
 import React from 'react';
 import { FieldRenderProps } from 'react-final-form';
-import { Form, FormFieldProps, Label } from 'semantic-ui-react';
 import { DateTimePicker } from 'react-widgets';
+import { Form, FormFieldProps, Label } from 'semantic-ui-react';
 
 interface IProps
     extends FieldRenderProps<Date, HTMLInputElement>,
@@ -34,7 +34,7 @@ const DateInput: React.FC<IProps> = ({
                 </Label>
             )}
         </Form.Field>
-    );
-};
+    )
+}
 
-export default DateInput;
+export default DateInput

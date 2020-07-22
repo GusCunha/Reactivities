@@ -33,10 +33,15 @@ const ActivityFilters = () => {
                     content={"I'm Hosting"}
                 />
             </Menu>
-            <Header icon={'calendar'} attached color={'teal'} content={'Select Date'} />
+            <Header
+                icon={'calendar'}
+                attached
+                color={'teal'}
+                content={'Select Date'}
+            />
             <Calendar
-                onChange={(date) => setPredicate('startDate', date!)}
-                value={predicate.get('startDate' || new Date())}
+                onChange={date => setPredicate('startDate', date!)}
+                value={predicate.get('startDate') || new Date()}
             />
         </Fragment>
     );

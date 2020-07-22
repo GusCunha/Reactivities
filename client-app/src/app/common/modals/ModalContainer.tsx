@@ -8,9 +8,7 @@ const ModalContainer = () => {
     const { modal: { open, body }, closeModal } = rootStore.modalStore;
     return (
         <Modal open={open} onClose={closeModal} size='mini'>
-            <Modal.Content>
-                {body}
-            </Modal.Content>
+            <Modal.Content>{body}</Modal.Content>
         </Modal>
     );
 };

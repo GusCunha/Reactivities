@@ -17,11 +17,11 @@ const ActivityDetailedChat = () => {
     } = rootStore.activityStore;
 
     useEffect(() => {
-        createHubConnection(activity!.id);
+        createHubConnection();
         return () => {
             stopHubConnection();
         }
-    }, [createHubConnection, stopHubConnection, activity]);
+    }, [createHubConnection, stopHubConnection])
 
     return (
         <Fragment>
@@ -48,6 +48,7 @@ const ActivityDetailedChat = () => {
                             </Comment.Content>
                         </Comment>
                     ))}
+
                     <FinalForm
                         onSubmit={addComment}
                         render={({ handleSubmit, submitting, form }) => (
@@ -59,11 +60,11 @@ const ActivityDetailedChat = () => {
                                     placeholder='Add your comment'
                                 />
                                 <Button
+                                    loading={submitting}
                                     content='Add Reply'
                                     labelPosition='left'
                                     icon='edit'
                                     primary
-                                    loading={submitting}
                                 />
                             </Form>
                         )}
@@ -72,7 +73,7 @@ const ActivityDetailedChat = () => {
                 </Comment.Group>
             </Segment>
         </Fragment>
-    )
+    );
 };
 
 export default observer(ActivityDetailedChat);

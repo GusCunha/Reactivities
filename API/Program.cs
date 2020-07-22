@@ -15,7 +15,7 @@ namespace API
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
@@ -29,7 +29,7 @@ namespace API
                 catch (Exception ex)
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error ocurred during migration.");
+                    logger.LogError(ex, "An error occurred during migration");
                 }
             }
 
@@ -41,6 +41,7 @@ namespace API
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseKestrel(x => x.AddServerHeader = false);
                 });
     }
 }

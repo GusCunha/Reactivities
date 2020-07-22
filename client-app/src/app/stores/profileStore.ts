@@ -5,7 +5,7 @@ import { IPhoto, IProfile, IUserActivity } from '../models/profile';
 import { RootStore } from './rootStore';
 
 export default class ProfileStore {
-    rootStore: RootStore
+    rootStore: RootStore;
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore;
 
@@ -33,11 +33,11 @@ export default class ProfileStore {
 
     @computed get isCurrentUser() {
         if (this.rootStore.userStore.user && this.profile) {
-            return this.rootStore.userStore.user.username === this.profile.username
+            return this.rootStore.userStore.user.username === this.profile.username;
         } else {
             return false;
         }
-    };
+    }
 
     @action loadUserActivities = async (username: string, predicate?: string) => {
         this.loadingActivities = true;
@@ -46,18 +46,18 @@ export default class ProfileStore {
             runInAction(() => {
                 this.userActivities = activities;
                 this.loadingActivities = false;
-            });
+            })
         } catch (error) {
-            toast.error('Problem loading activities');
+            toast.error('Problem loading activities')
             runInAction(() => {
                 this.loadingActivities = false;
-            });
+            })
         }
-    };
+    }
 
     @action setActiveTab = (activeIndex: number) => {
         this.activeTab = activeIndex;
-    };
+    }
 
     @action loadProfile = async (username: string) => {
         this.loadingProfile = true;
@@ -66,12 +66,12 @@ export default class ProfileStore {
             runInAction(() => {
                 this.profile = profile;
                 this.loadingProfile = false;
-            })
+            });
         } catch (error) {
             runInAction(() => {
                 this.loadingProfile = false;
-            })
-            console.log(error)
+            });
+            console.log(error);
         }
     };
 
@@ -84,17 +84,17 @@ export default class ProfileStore {
                     this.profile.photos.push(photo);
                     if (photo.isMain && this.rootStore.userStore.user) {
                         this.rootStore.userStore.user.image = photo.url;
-                        this.profile.image = photo.url
+                        this.profile.image = photo.url;
                     }
                 }
                 this.uploadingPhoto = false;
-            })
+            });
         } catch (error) {
             console.log(error);
-            toast.error('Problem uploading photo')
+            toast.error('Problem uploading photo');
             runInAction(() => {
                 this.uploadingPhoto = false;
-            })
+            });
         }
     };
 
@@ -108,12 +108,12 @@ export default class ProfileStore {
                 this.profile!.photos.find(a => a.id === photo.id)!.isMain = true;
                 this.profile!.image = photo.url;
                 this.loading = false;
-            })
+            });
         } catch (error) {
             toast.error('Problem setting photo as main');
             runInAction(() => {
                 this.loading = false;
-            })
+            });
         }
     };
 
@@ -122,14 +122,16 @@ export default class ProfileStore {
         try {
             await agent.Profiles.deletePhoto(photo.id);
             runInAction(() => {
-                this.profile!.photos = this.profile!.photos.filter(a => a.id !== photo.id);
+                this.profile!.photos = this.profile!.photos.filter(
+                    a => a.id !== photo.id
+                );
                 this.loading = false;
-            })
+            });
         } catch (error) {
             toast.error('Problem deleting the photo');
             runInAction(() => {
                 this.loading = false;
-            })
+            });
         }
     };
 
@@ -137,13 +139,15 @@ export default class ProfileStore {
         try {
             await agent.Profiles.updateProfile(profile);
             runInAction(() => {
-                if (profile.displayName !== this.rootStore.userStore.user!.displayName) {
+                if (
+                    profile.displayName !== this.rootStore.userStore.user!.displayName
+                ) {
                     this.rootStore.userStore.user!.displayName = profile.displayName!;
                 }
-                this.profile = { ...this.profile!, ...profile }
-            })
+                this.profile = { ...this.profile!, ...profile };
+            });
         } catch (error) {
-            toast.error('Problem updating profile')
+            toast.error('Problem updating profile');
         }
     };
 
@@ -184,11 +188,14 @@ export default class ProfileStore {
     @action loadFollowings = async (predicate: string) => {
         this.loading = true;
         try {
-            const profiles = await agent.Profiles.listFollowings(this.profile!.username, predicate);
+            const profiles = await agent.Profiles.listFollowings(
+                this.profile!.username,
+                predicate
+            );
             runInAction(() => {
                 this.followings = profiles;
                 this.loading = false;
-            });
+            })
         } catch (error) {
             toast.error('Problem loading followings');
             runInAction(() => {

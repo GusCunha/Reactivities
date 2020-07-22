@@ -3,7 +3,6 @@ import { RootStore } from "./rootStore";
 
 export default class ModalStore {
     rootStore: RootStore;
-
     constructor(rootStore: RootStore) {
         this.rootStore = rootStore;
     }

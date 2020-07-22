@@ -6,3 +6,5 @@ obj
 appsettings.json
 *.db
 .CourseAssets
+wwwroot
+/publish

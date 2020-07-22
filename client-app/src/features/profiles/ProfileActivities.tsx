@@ -1,9 +1,9 @@
-import React, { useEffect, useContext } from 'react';
-import { observer } from 'mobx-react-lite';
-import { Tab, Grid, Header, Card, Image, TabProps } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import { IUserActivity } from '../../app/models/profile';
 import { format } from 'date-fns';
+import { observer } from 'mobx-react-lite';
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Card, Grid, Header, Image, Tab, TabProps } from 'semantic-ui-react';
+import { IUserActivity } from '../../app/models/profile';
 import { RootStoreContext } from '../../app/stores/rootStore';
 
 const panes = [

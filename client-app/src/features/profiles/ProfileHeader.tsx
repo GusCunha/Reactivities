@@ -4,11 +4,11 @@ import { Button, Divider, Grid, Header, Item, Reveal, Segment, Statistic } from 
 import { IProfile } from '../../app/models/profile';
 
 interface IProps {
-    profile: IProfile,
-    isCurrentUser: boolean,
-    loading: boolean,
-    follow: (username: string) => void,
-    unfollow: (username: string) => void
+    profile: IProfile;
+    isCurrentUser: boolean;
+    loading: boolean;
+    follow: (username: string) => void;
+    unfollow: (username: string) => void;
 }
 
 const ProfileHeader: React.FC<IProps> = ({
@@ -27,7 +27,8 @@ const ProfileHeader: React.FC<IProps> = ({
                             <Item.Image
                                 avatar
                                 size='small'
-                                src={profile.image || '/assets/user.png'} />
+                                src={profile.image || '/assets/user.png'}
+                            />
                             <Item.Content verticalAlign='middle'>
                                 <Header as='h1'>{profile.displayName}</Header>
                             </Item.Content>
@@ -40,10 +41,14 @@ const ProfileHeader: React.FC<IProps> = ({
                         <Statistic label='Following' value={profile.followingCount} />
                     </Statistic.Group>
                     <Divider />
-                    {!isCurrentUser &&
+                    {!isCurrentUser && (
                         <Reveal animated='move'>
                             <Reveal.Content visible style={{ width: '100%' }}>
-                                <Button fluid color='teal' content={profile.following ? 'Following' : 'Not following'} />
+                                <Button
+                                    fluid
+                                    color='teal'
+                                    content={profile.following ? 'Following' : 'Not following'}
+                                />
                             </Reveal.Content>
                             <Reveal.Content hidden>
                                 <Button
@@ -52,13 +57,15 @@ const ProfileHeader: React.FC<IProps> = ({
                                     basic
                                     color={profile.following ? 'red' : 'green'}
                                     content={profile.following ? 'Unfollow' : 'Follow'}
-                                    onClick={profile.following ?
-                                        () => unfollow(profile.username) :
-                                        () => follow(profile.username)}
+                                    onClick={
+                                        profile.following
+                                            ? () => unfollow(profile.username)
+                                            : () => follow(profile.username)
+                                    }
                                 />
                             </Reveal.Content>
                         </Reveal>
-                    }
+                    )}
                 </Grid.Column>
             </Grid>
         </Segment>

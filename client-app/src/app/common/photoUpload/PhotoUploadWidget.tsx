@@ -29,33 +29,41 @@ const PhotoUploadWidget: React.FC<IProps> = ({ loading, uploadPhoto }) => {
                 <Grid.Column width={1} />
                 <Grid.Column width={4}>
                     <Header sub color='teal' content='Step 2 - Resize image' />
-                    {files.length > 0 &&
-                        <PhotoWidgetCropper setImage={setImage} imagePreview={files[0].preview} />
-                    }
+                    {files.length > 0 && (
+                        <PhotoWidgetCropper
+                            setImage={setImage}
+                            imagePreview={files[0].preview}
+                        />
+                    )}
                 </Grid.Column>
                 <Grid.Column width={1} />
                 <Grid.Column width={4}>
                     <Header sub color='teal' content='Step 3 - Preview & Upload' />
-                    {files.length > 0 &&
+                    {files.length > 0 && (
                         <Fragment>
-                            <div className='img-preview' style={{ minHeight: '200px', overflow: 'hidden' }} />
+                            <div
+                                className='img-preview'
+                                style={{ minHeight: '200px', overflow: 'hidden' }}
+                            />
                             <Button.Group widths={2}>
                                 <Button
                                     positive
                                     icon='check'
                                     loading={loading}
-                                    onClick={() => uploadPhoto(image!)} />
+                                    onClick={() => uploadPhoto(image!)}
+                                />
                                 <Button
                                     icon='close'
                                     disabled={loading}
-                                    onClick={() => setFiles([])} />
+                                    onClick={() => setFiles([])}
+                                />
                             </Button.Group>
                         </Fragment>
-                    }
+                    )}
                 </Grid.Column>
             </Grid>
         </Fragment>
     );
-}
+};
 
 export default observer(PhotoUploadWidget);

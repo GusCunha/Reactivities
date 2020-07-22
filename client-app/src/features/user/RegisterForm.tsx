@@ -9,11 +9,11 @@ import { IUserFormValues } from '../../app/models/user';
 import { RootStoreContext } from '../../app/stores/rootStore';
 
 const validate = combineValidators({
-    username: isRequired('username'),
-    displayName: isRequired('display name'),
-    email: isRequired('email'),
-    password: isRequired('password')
-})
+    username: isRequired('Username'),
+    displayName: isRequired('DisplayName'),
+    email: isRequired('Email'),
+    password: isRequired('Password')
+});
 
 const RegisterForm = () => {
     const rootStore = useContext(RootStoreContext);
@@ -35,22 +35,19 @@ const RegisterForm = () => {
                 dirtySinceLastSubmit
             }) => (
                     <Form onSubmit={handleSubmit} error>
-                        <Header as='h2' content='Sign up to Reactivities' color='teal' textAlign='center' />
-                        <Field
-                            name='username'
-                            component={TextInput}
-                            placeholder='Username'
+                        <Header
+                            as='h2'
+                            content='Sign up to Reactivities'
+                            color='teal'
+                            textAlign='center'
                         />
+                        <Field name='username' component={TextInput} placeholder='Username' />
                         <Field
                             name='displayName'
                             component={TextInput}
                             placeholder='Display Name'
                         />
-                        <Field
-                            name='email'
-                            component={TextInput}
-                            placeholder='Email'
-                        />
+                        <Field name='email' component={TextInput} placeholder='Email' />
                         <Field
                             name='password'
                             component={TextInput}
@@ -69,10 +66,10 @@ const RegisterForm = () => {
                             content='Register'
                             fluid
                         />
-                    </Form >
+                    </Form>
                 )}
         />
     );
-}
+};
 
 export default RegisterForm;

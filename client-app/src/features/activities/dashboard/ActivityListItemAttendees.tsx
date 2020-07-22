@@ -9,17 +9,16 @@ interface IProps {
 const styles = {
     borderColor: 'orange',
     borderWidth: 2
-};
+}
 
 const ActivityListItemAttendees: React.FC<IProps> = ({ attendees }) => {
     return (
         <List horizontal>
-            {attendees.map((attendee) => (
+            {attendees.map(attendee => (
                 <List.Item key={attendee.username}>
                     <Popup
                         header={attendee.displayName}
-                        trigger=
-                        {
+                        trigger={
                             <Image
                                 size='mini'
                                 circular
@@ -32,7 +31,7 @@ const ActivityListItemAttendees: React.FC<IProps> = ({ attendees }) => {
                 </List.Item>
             ))}
         </List>
-    )
+    );
 };
 
 export default ActivityListItemAttendees;

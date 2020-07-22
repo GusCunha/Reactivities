@@ -27,7 +27,7 @@ const SelectInput: React.FC<IProps> = ({
                 </Label>
             )}
         </Form.Field>
-    );
-};
+    )
+}
 
-export default SelectInput;
+export default SelectInput

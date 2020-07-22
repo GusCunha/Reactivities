@@ -39,7 +39,7 @@ const ActivityDetailedInfo: React.FC<{ activity: IActivity }> = ({ activity }) =
                 </Grid>
             </Segment>
         </Segment.Group>
-    )
+    );
 };
 
 export default ActivityDetailedInfo;

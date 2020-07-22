@@ -1,8 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Image, Item, Label, List, Segment } from 'semantic-ui-react';
 import { IAttendee } from '../../../app/models/activity';
-import { observer } from 'mobx-react-lite';
 
 interface IProps {
     attendees: IAttendee[];
@@ -23,9 +23,9 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
             </Segment>
             <Segment attached>
                 <List relaxed divided>
-                    {attendees.map((attendee) => (
+                    {attendees.map(attendee => (
                         <Item key={attendee.username} style={{ position: 'relative' }}>
-                            {attendee.isHost &&
+                            {attendee.isHost && (
                                 <Label
                                     style={{ position: 'absolute' }}
                                     color='orange'
@@ -33,22 +33,23 @@ const ActivityDetailedSidebar: React.FC<IProps> = ({ attendees }) => {
                                 >
                                     Host
                                 </Label>
-                            }
+                            )}
                             <Image size='tiny' src={attendee.image || '/assets/user.png'} />
                             <Item.Content verticalAlign='middle'>
                                 <Item.Header as='h3'>
-                                    <Link to={`/profile/${attendee.username}`}>{attendee.displayName}</Link>
+                                    <Link to={`/profile/${attendee.username}`}>
+                                        {attendee.displayName}
+                                    </Link>
                                 </Item.Header>
                                 {attendee.following &&
-                                    <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>
-                                }
+                                    <Item.Extra style={{ color: 'orange' }}>Following</Item.Extra>}
                             </Item.Content>
                         </Item>
                     ))}
                 </List>
             </Segment>
         </Fragment>
-    )
+    );
 };
 
 export default observer(ActivityDetailedSidebar);
