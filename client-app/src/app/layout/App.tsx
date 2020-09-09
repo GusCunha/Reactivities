@@ -9,6 +9,8 @@ import ActivityForm from '../../features/activities/form/ActivityForm';
 import HomePage from '../../features/home/HomePage';
 import NavBar from '../../features/nav/NavBar';
 import ProfilePage from '../../features/profiles/ProfilePage';
+import RegisterSuccess from '../../features/user/RegisterSuccess';
+import VerifyEmail from '../../features/user/VerifyEmail';
 import ModalContainer from '../common/modals/ModalContainer';
 import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
@@ -50,6 +52,8 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                                     component={ActivityForm}
                                 />
                                 <PrivateRoute path='/profile/:username' component={ProfilePage} />
+                                <Route path='/user/registerSuccess' component={RegisterSuccess} />
+                                <Route path='/user/verifyEmail' component={VerifyEmail} />
                                 <Route component={NotFound} />
                             </Switch>
                         </Container>
